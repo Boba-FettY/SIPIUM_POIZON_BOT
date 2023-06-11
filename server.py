@@ -79,7 +79,7 @@ async def money(update, context):
 
 
 async def first(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    if update.message.text.isdigit():
+    try:
         keyboard = [
             [
                 InlineKeyboardButton("👟Кроссовки", callback_data=f"кр{float(update.message.text)}"),
@@ -89,7 +89,7 @@ async def first(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await update.message.reply_text(f'Какой тип товара вас интересует?', reply_markup=reply_markup)
-    else:
+    except Exception:
         await update.message.reply_text('Неверный формат!')
     return ConversationHandler.END
 
